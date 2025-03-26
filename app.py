@@ -33,5 +33,15 @@ def index():
 if __name__ == "__main__":
     app.run(debug=False, host='0.0.0.0', port=5000)
 
+import os
+
+@app.route("/")
+def index():
+    if os.path.exists("templates/index.html"):
+        print("Arquivo index.html encontrado!")
+    else:
+        print("Arquivo index.html NÃO encontrado!")
+    return render_template("index.html")
+
 
 
