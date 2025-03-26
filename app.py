@@ -23,10 +23,15 @@ def index():
     if request.method == "POST":
         nome = request.form["nome"]
         telefone = request.form["telefone"]
-        salvar_dados(nome, telefone)
+        try:
+            salvar_dados(nome, telefone)
+        except Exception as e:
+            return f"Ocorreu um erro ao salvar os dados: {e}", 500
         return render_template("confirmacao.html")
     return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(debug=False, host='0.0.0.0', port=5000)
+
+
 
